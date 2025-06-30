@@ -1,0 +1,30 @@
+import pandas as pd
+from statsmodels.tsa.arima.model import ARIMA
+
+def train_model(data):
+    model = ARIMA(data['Close'], order=(5, 1, 0))
+    model_fit = model.fit()
+    return model_fit
+
+if __name__ == "__main__":
+    data = pd.read_csv('AAPL.csv')  # Load your data
+    model = train_model(data)
+    print(model.summary())
+
+    #backtesting
+
+    def backtest(data, model):
+    predictions = model.forecast(steps=30)
+    plt.figure(figsize=(12, 6))
+    plt.plot(data['Close'], label='Actual Prices')
+    plt.plot(predictions, label='Predicted Prices', color='red')
+    plt.title('Backtesting Predictions')
+    plt.xlabel('Date')
+    plt.ylabel('Price')
+    plt.legend()
+    plt.show()
+
+if __name__ == "__main__":
+    data = pd.read_csv('AAPL.csv')  # Load your data
+    model = train_model(data)
+    backtest(data, model)
