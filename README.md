@@ -31,9 +31,4 @@ pip install -r requirements.txt
 Run the application:
 bash
 
-Copy
-python app.py
-Open your browser and go to http://127.0.0.1:5000.
 
-   git clone https://github.com/yourusername/stock-price-dashboard.git
-   cd stock-price-dashboard
